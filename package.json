@@ -1,0 +1,26 @@
+{
+  "name": "mapdeduce",
+  "version": "1.0.0",
+  "description": "a simple geospatial algorithm debugger",
+  "main": " ",
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morganherlocker/mapdeduce.git"
+  },
+  "keywords": [
+    "map",
+    "geometry"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morganherlocker/mapdeduce/issues"
+  },
+  "homepage": "https://github.com/morganherlocker/mapdeduce#readme",
+  "devDependencies": {
+    "@turf/turf": "^5.1.6"
+  }
+}
