@@ -27,8 +27,8 @@
 <div id="log"></div>
 <div id="map"></div>
 <script>
-  const DELTA = 50;
-  const STEP = 50;
+  const DELTA = 75;
+  const STEP = 35;
   var display = [];
 	mapboxgl.accessToken = '{{token}}';
   var map = new mapboxgl.Map({
@@ -142,7 +142,7 @@
             'geometry': action.geometry,
             'properties': action.style,
             'opacity': action.style.opacity,
-            'fade': action.fade,
+            'fade': action.fade || -1,
             'age': 0
           })
         } else if (action.type === 'log') {
@@ -150,11 +150,11 @@
             display = display.slice(1, display.length)
           }
           if(!action.color) action.color = '#fff'
-          display.push(action.message)
+          display.push(action)
 
           document.getElementById('log').innerHTML =
-            display.map(message => {
-              return '<div style="color:'+action.color+';">' + message + '</div>'
+            display.map(action => {
+              return '<div style="color:'+action.color+';"><span style="padding:2.8px;background-color:rgba(10,10,10,0.4);">' + action.message + '</span></div>'
             }).join('');
         } else if (action.type === 'clear') {
           display = []

@@ -15,7 +15,6 @@ var bbox = [
     -1.2774624876039293
   ]
 
-
 actions.push({
   type: 'fit',
   bbox:
@@ -32,19 +31,23 @@ actions.push({
   type: 'draw',
   geometry: multipoint.geometry,
   style: {
-    'width': 4,
-    'color': '#f0f',
-    'opacity': 1
-  },
-  fade: -1
+    'width': 3,
+    'color': '#ff99ff',
+    'opacity': 0.8
+  }
 })
 
 var tin = turf.tin(points);
 for (let tri of tin.features) {
+  var area = turf.area(tri) / 1000
+  var size = area / 30;
+  if(size > 1) size = 1
   actions.push({
     type: 'log',
-    message: 'area: ' + (turf.area(tri) / 1000).toFixed(5) + ' kilometers'
+    message: 'area: ' + (turf.area(tri) / 1000).toFixed(5) + ' km<sup>2</sup>',
+    color: 'rgb('+(100 + Math.round(Math.abs(size-1)*105))+','+(100 + Math.round(size*50))+','+(100 + Math.round(size*50))+');'
   })
+
   actions.push({
     type: 'draw',
     geometry: tri.geometry,

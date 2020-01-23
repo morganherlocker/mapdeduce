@@ -35,6 +35,12 @@ The following strings must be replaced for the demo to function:
       - `width` (for Point and LineString geometries)
     - `fade`
       - fade duration in milliseconds
+- log
+  - description:
+    - print a message to the display over the map
+  - options:
+    - `message`
+    - `color` (optional)
 - clear
   - description:
     - clear all features
