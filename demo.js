@@ -23,7 +23,7 @@ actions.push({
     .concat(turf.destination(turf.point(bbox.slice(2,4)), 0.2, 45, {units: 'kilometers'}).geometry.coordinates)
 })
 
-var points = turf.randomPoint(25, {bbox: bbox})
+var points = turf.randomPoint(100, {bbox: bbox})
 var multipoint = turf.multiPoint(points.features.map(pt => {
   return pt.geometry.coordinates
 }))
@@ -42,13 +42,27 @@ actions.push({
 var tin = turf.tin(points);
 for (let tri of tin.features) {
   actions.push({
+    type: 'log',
+    message: 'area: ' + (turf.area(tri) / 1000).toFixed(5) + ' kilometers'
+  })
+  actions.push({
     type: 'draw',
     geometry: tri.geometry,
     style: {
       'color': '#0ff',
-      'opacity': 0.8
+      'opacity': 0.6
     },
-    fade: 5000
+    fade: 3000
+  })
+  actions.push({
+    type: 'draw',
+    geometry: turf.lineString(tri.geometry.coordinates[0]).geometry,
+    style: {
+      'color': '#99ff66',
+      'opacity': 0.8,
+      'width': 1
+    },
+    fade: 10000
   })
 }
 
